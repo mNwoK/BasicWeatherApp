@@ -1,5 +1,6 @@
 package com.example.themostbasicweatherapp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,29 +26,33 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.room.Room
+import com.example.themostbasicweatherapp.data.db.CityDataBase
 import com.example.themostbasicweatherapp.ui.components.ChangeCityWidget
 import com.example.themostbasicweatherapp.ui.screens.AllCitiesScreen
 import com.example.themostbasicweatherapp.ui.screens.CurCityScreen
 import com.example.themostbasicweatherapp.ui.theme.TheMostBasicWeatherAppTheme
 import com.example.themostbasicweatherapp.ui.util.Nav
+import com.example.themostbasicweatherapp.util.isOnline
 import com.example.themostbasicweatherapp.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MainActivity : ComponentActivity() {
   @OptIn(ExperimentalMaterial3Api::class)
   override fun onCreate(savedInstanceState: Bundle?) {
-
     super.onCreate(savedInstanceState)
+
     enableEdgeToEdge()
     val mainVM = getViewModel<MainViewModel>()
     setContent {
       var changeCityOpen by remember { mutableStateOf(false) }
+
       val navCtrl = rememberNavController()
       TheMostBasicWeatherAppTheme {
         if (changeCityOpen) {
           ChangeCityWidget(
               onDismissRequest = { changeCityOpen = false },
-              city = mainVM.state.collectAsState().value.city,
+              city = mainVM.state.collectAsState().value.mainCity,
               onConfirmation = {
                 mainVM.changeCity(it)
                 changeCityOpen = false

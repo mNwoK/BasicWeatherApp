@@ -3,9 +3,12 @@ package com.example.themostbasicweatherapp.data.db.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "cities")
-data class Cities(
+@Entity(tableName = "weather")
+data class Weather(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val name: String,
-    val selected: Boolean,
+    val cityName: String,
+    val temp: Double,
+    val feelsLike: Double,
+    val condition: String,
+    val iconURL: String
 )

@@ -35,18 +35,6 @@ class ApiClient(private val httpClient: HttpClient) {
   }
 
   suspend fun getForecast(token: String, city: String): ForecastDTO? {
-
-    val cn = httpClient
-      .get(urlString = "$baseURL/forecast.json") {
-        // headers { append("Authorization", "Bearer $token") }
-        url {
-          parameters.append("q", city)
-          parameters.append("days", "5")
-          parameters.append("lang", "ru")
-          parameters.append("key", token)
-        }
-      }.toString()
-      Log.d("tema", cn)
     return try {
       httpClient
         .get(urlString = "$baseURL/forecast.json") {

@@ -24,9 +24,9 @@ data class Condition(
 data class Current(
     @SerialName("temp_c") var tempC: Double,
     @SerialName("condition") var condition: Condition,
-    @SerialName("wind_kph") var windKph: Double,
-    @SerialName("wind_dir") var windDir: String,
-    @SerialName("pressure_mb") var pressureMb: Double,
-    @SerialName("humidity") var humidity: Double,
+    @SerialName("wind_kph") var windKph: Double?,
+    @SerialName("wind_dir") var windDir: String?,
+    @SerialName("pressure_mb") var pressureMb: Double?,
+    @SerialName("humidity") var humidity: Double?,
     @SerialName("feelslike_c") var feelslikeC: Double,
 )

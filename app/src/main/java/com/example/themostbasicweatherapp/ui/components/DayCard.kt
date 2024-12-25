@@ -31,9 +31,9 @@ fun DayCard(dayOfWeek: String, temp: Double, icon: String) {
         Spacer(Modifier.weight(1f))
         Text(temp.roundToInt().toString() + "℃", fontSize = 24.sp)
         AsyncImage(
-            model = icon,
+            model = "https:$icon",
             contentDescription = "pon",
-            modifier = Modifier.size(64.dp)
+            modifier = Modifier.size(48.dp)
         )
     }
   }

@@ -3,6 +3,7 @@ package com.example.themostbasicweatherapp.ui.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -20,7 +21,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 
 @Composable
@@ -30,21 +33,29 @@ fun ChangeCityWidget(onDismissRequest: () -> Unit, onConfirmation: (String) -> U
 
   Dialog(onDismissRequest = { onDismissRequest() }) {
     Card(
-        modifier = Modifier.fillMaxWidth().height(200.dp).padding(16.dp),
+        modifier = Modifier.fillMaxWidth().height(200.dp),
         shape = RoundedCornerShape(16.dp),
     ) {
-      Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "Поменять основной город", textAlign = TextAlign.Center)
-        OutlinedTextField(
-            value = newCity, onValueChange = { newCity = it }, label = { Text("Город") })
-        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-          TextButton(onClick = onDismissRequest) { Text("Отменить") }
-          Button(
-            onClick = { onConfirmation(newCity) },
-            modifier = Modifier.weight(1f))
-          { Text("Создать") }
-        }
-      }
+      Column(
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier.padding(16.dp).fillMaxSize(),
+          verticalArrangement = Arrangement.SpaceBetween) {
+            Text(text = "Поменять основной город", textAlign = TextAlign.Center, fontSize = 18.sp)
+            OutlinedTextField(
+                value = newCity, onValueChange = { newCity = it }, label = { Text("Город") })
+            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+              TextButton(onClick = onDismissRequest) { Text("Отменить") }
+              Button(onClick = { onConfirmation(newCity) }, modifier = Modifier.weight(1f)) {
+                Text("Изменить")
+              }
+            }
+          }
     }
   }
+}
+
+@Composable
+@Preview
+fun ChangeCityWidgetPreview() {
+  ChangeCityWidget({}, {}, "Moscow")
 }

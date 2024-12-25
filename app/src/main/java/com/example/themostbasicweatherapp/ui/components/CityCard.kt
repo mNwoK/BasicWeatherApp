@@ -49,7 +49,7 @@ fun CityCard(
             Spacer(Modifier.weight(1f))
             Text(temp.roundToInt().toString() + "℃", fontSize = 24.sp)
             AsyncImage(
-                model = weatherIcon,
+                model = "https:$weatherIcon",
                 contentDescription = "pon",
                 modifier = Modifier.size(64.dp)
             )

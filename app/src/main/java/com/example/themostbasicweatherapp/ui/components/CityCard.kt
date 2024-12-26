@@ -24,19 +24,24 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.themostbasicweatherapp.R
 import com.example.themostbasicweatherapp.ui.theme.secondaryContainerLight
+import com.example.themostbasicweatherapp.viewmodels.MainViewModel
 import kotlin.math.roundToInt
 
 @Composable
 fun CityCard(
     cityName: String,
     temp: Double,
-    weatherIcon: String
+    weatherIcon: String,
+    onClick: () -> Unit,
+    mainVM: MainViewModel
 ) {
     Card(
         colors = CardDefaults.cardColors().copy(containerColor = secondaryContainerLight),
         modifier = Modifier
             .fillMaxWidth()
             .height(64.dp),
+        onClick = { mainVM.changeCity(cityName)
+            onClick() }
     ) {
         Row(
             modifier = Modifier
@@ -58,12 +63,12 @@ fun CityCard(
     }
 }
 
-@Preview
-@Composable
-private fun CityCardPreview() {
-    CityCard(
-        "Дристаун",
-        23.5,
-            "https://cdn.weatherapi.com/weather/64x64/day/227.png"
-    )
-}
+//@Preview
+//@Composable
+//private fun CityCardPreview() {
+//    CityCard(
+//        "Дристаун",
+//        23.5,
+//            "https://cdn.weatherapi.com/weather/64x64/day/227.png", {}
+//    )
+//}

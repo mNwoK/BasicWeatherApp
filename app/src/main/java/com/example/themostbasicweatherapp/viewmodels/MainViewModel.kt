@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 data class MainState(
     val token: String = Token.TOKEN, // c6871c52defe4d7e95f121322241812
     val mainCity: String = "",
+    val chosenCity: String = "",
     val cities: List<String>? = emptyList(),
     var currentCity: CurrentDTO? = null,
     val forecastCity: ForecastDTO? = null,
@@ -37,9 +38,9 @@ class MainViewModel(private val api: ApiClient, val ctx: Context, val dao: CityD
   val state = _state.asStateFlow()
 
   fun changeCity(newCity: String) {
-    _state.update { it.copy(mainCity = newCity) }
+    _state.update { it.copy(chosenCity = newCity) }
     Log.d("tema", "city updated")
-    viewModelScope.launch { fetchData() }
+    // viewModelScope.launch { fetchData() }
   }
 
   suspend fun getDTObyCity(cityName: String): CurrentDTO? {

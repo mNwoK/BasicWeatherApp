@@ -9,5 +9,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 enum class Nav(val route: String, val enabledIcon: ImageVector, val disabledIcon: ImageVector, val title: String) {
   CURRENT_CITY_SCREEN("cur", Icons.Filled.Favorite, Icons.Outlined.Favorite, "Мой Город"),
-  ALL_CITIES_SCREEN("all", Icons.Filled.Menu, Icons.Outlined.Menu, "Другие города")
+  ALL_CITIES_SCREEN("all", Icons.Filled.Menu, Icons.Outlined.Menu, "Другие города"),
+  DETAILED_SCREEN("detailed", Icons.Filled.Menu, Icons.Outlined.Menu, "детально" )
 }

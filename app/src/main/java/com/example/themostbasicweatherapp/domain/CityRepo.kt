@@ -8,9 +8,11 @@ import kotlinx.coroutines.flow.Flow
 interface CityRepo {
   suspend fun insertCity(city: Cities)
 
+  suspend fun upsertWeather(weather: Weather)
+
   suspend fun deleteCity(city: Cities)
 
-  fun getAllCitites(): Flow<List<Cities>>
+  suspend fun getAllCities(): List<Cities>
 
   suspend fun getSelected(): Cities
 

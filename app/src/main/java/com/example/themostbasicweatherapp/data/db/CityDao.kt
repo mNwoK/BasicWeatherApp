@@ -2,6 +2,7 @@ package com.example.themostbasicweatherapp.data.db
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Upsert
 import com.example.themostbasicweatherapp.data.db.entities.Cities
@@ -10,14 +11,17 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CityDao {
-    @Upsert
+    @Insert
     suspend fun insertCity(city: Cities)
+
+    @Upsert
+    suspend fun upsertWeather(weather: Weather)
 
     @Delete
     suspend fun deleteCity(city: Cities)
 
     @Query("SELECT * FROM cities")
-    fun getAllCitites(): Flow<List<Cities>>
+    suspend fun getAllCities(): List<Cities>
 
     @Query("SELECT * FROM cities WHERE selected = 1")
     suspend fun getSelected(): Cities

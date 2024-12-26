@@ -8,7 +8,7 @@ import com.example.themostbasicweatherapp.data.db.entities.Cities
 import com.example.themostbasicweatherapp.data.db.entities.Weather
 
 @Database(
-    version = 1,
+    version = 2,
     entities = [Cities::class, Weather::class]
 )
 abstract class CityDataBase: RoomDatabase() {

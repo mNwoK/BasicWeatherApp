@@ -56,8 +56,7 @@ class MainActivity : ComponentActivity() {
               onConfirmation = {
                 mainVM.changeCity(it)
                 changeCityOpen = false
-              } // TODO вьюмодель не меняет город
-              // TODO сделать самообновление либо pull-to-refresh
+              } // TODO переделать изменение города
               )
         }
         val current = navCtrl.currentBackStackEntryAsState().value?.destination?.route
@@ -86,7 +85,7 @@ class MainActivity : ComponentActivity() {
                     composable(Nav.CURRENT_CITY_SCREEN.route) {
                       CurCityScreen(mainVM) { changeCityOpen = true }
                     }
-                    composable(Nav.ALL_CITIES_SCREEN.route) { AllCitiesScreen() }
+                    composable(Nav.ALL_CITIES_SCREEN.route) { AllCitiesScreen(mainVM) }
                   }
             }
       }

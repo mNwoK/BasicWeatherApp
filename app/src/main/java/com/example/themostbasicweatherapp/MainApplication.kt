@@ -15,7 +15,8 @@ import org.koin.dsl.module
 val appModule = module {
   single { createHttpClient() }
   single { ApiClient(get())}
-  single { Room.databaseBuilder(get(), CityDataBase::class.java, "CityDataBase").build().getDao()}
+  single { Room.databaseBuilder(get(), CityDataBase::class.java, "CityDataBase").fallbackToDestructiveMigration()
+    .build().getDao()}
   single {isOnline(get()) }
   viewModelOf(::MainViewModel)
 

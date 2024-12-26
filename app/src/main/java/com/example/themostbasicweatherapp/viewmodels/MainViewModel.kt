@@ -146,12 +146,24 @@ class MainViewModel(private val api: ApiClient, val ctx: Context, val dao: CityD
       var allCitiesCurrent: List<CurrentDTO?> = emptyList<CurrentDTO?>()
       if (isOnline(ctx)) {
         Log.d("tema", "its online in fetch data - cities")
-        _state.value.cities?.forEach {
-          Log.d("tema", "viewmodel loading city $it")
-          allCitiesCurrent += api.getCurrent(_state.value.token, it)
+        _state.value.cities?.forEach { city ->
+          Log.d("tema", "viewmodel loading city $city")
+            val cur = api.getCurrent(_state.value.token, city)
+          allCitiesCurrent += cur
+            cur?.let {
+                dao.upsertWeather(
+                Weather(
+                    id = 0,
+                    cityName = cur.location.name,
+                    temp = cur.current.tempC,
+                    feelsLike = cur.current.feelslikeC,
+                    condition = cur.current.condition.text,
+                    iconURL = cur.current.condition.icon))}
+
         }
       } else {
         state.value.cities?.forEach {
+            Log.d("tema", "viewmodel loading city $it")
           val cur = dao.getWeatherByCity(it)
           allCitiesCurrent +=
               CurrentDTO(
@@ -205,6 +217,7 @@ class MainViewModel(private val api: ApiClient, val ctx: Context, val dao: CityD
         Log.d("tema", "cities fetched")
         uploadFromDB()
         Log.d("tema", "questionably successfully uploaded data from db")
+          fetchData()
       }
     }
 

@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.themostbasicweatherapp.data.db.CityDao
+import com.example.themostbasicweatherapp.data.db.entities.Cities
 import com.example.themostbasicweatherapp.data.db.entities.Weather
 import com.example.themostbasicweatherapp.data.network.ApiClient
 import com.example.themostbasicweatherapp.data.network.model.Condition
@@ -182,6 +183,12 @@ class MainViewModel(private val api: ApiClient, val ctx: Context, val dao: CityD
 //            )
 //          )
 //        }
+
+//      viewModelScope.launch {
+//          dao.deleteCity(
+//              Cities(2, "Амстердам", true)
+//          )
+//      }
     if (isOnline(ctx)) {
       Log.d("tema", "online")
       viewModelScope.launch {

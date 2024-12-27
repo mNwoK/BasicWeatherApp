@@ -23,7 +23,7 @@ fun AllCitiesScreen(mainVM: MainViewModel) {
       horizontalAlignment = Alignment.CenterHorizontally,
       verticalArrangement = Arrangement.spacedBy(12.dp)) {
         if (weathers != null) {
-          LazyColumn {
+          LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
               items(weathers) {
                   Log.d("tema", "compose loading city $it")
                   if (it != null)

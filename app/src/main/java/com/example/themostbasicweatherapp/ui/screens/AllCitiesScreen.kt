@@ -16,7 +16,7 @@ import com.example.themostbasicweatherapp.ui.components.CityCard
 import com.example.themostbasicweatherapp.viewmodels.MainViewModel
 
 @Composable
-fun AllCitiesScreen(mainVM: MainViewModel) {
+fun AllCitiesScreen(mainVM: MainViewModel, openDetailed: () -> Unit) {
   val weathers = mainVM.state.collectAsState().value.allCitiesCurrent
   Column(
       modifier = Modifier.fillMaxSize().padding(16.dp),
@@ -24,13 +24,15 @@ fun AllCitiesScreen(mainVM: MainViewModel) {
       verticalArrangement = Arrangement.spacedBy(12.dp)) {
         if (weathers != null) {
           LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-              items(weathers) {
-                  Log.d("tema", "compose loading city $it")
-                  if (it != null)
+              items(weathers) { city ->
+                  Log.d("tema", "compose loading city $city")
+                  if (city != null)
                   CityCard(
-                      it.location.name,
-                      it.current.tempC,
-                      it.current.condition.icon
+                      city.location.name,
+                      city.current.tempC,
+                      city.current.condition.icon,
+                      mainVM = mainVM,
+                      onClick = { openDetailed() }
                   )
           } }
         } else {

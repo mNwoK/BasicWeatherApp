@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 data class MainState(
-    val token: String = Token.TOKEN, // c6871c52defe4d7e95f121322241812
+    val token: String = Token.TOKEN,
     val mainCity: String = "",
     val chosenCity: String = "",
     val cities: List<String>? = emptyList(),

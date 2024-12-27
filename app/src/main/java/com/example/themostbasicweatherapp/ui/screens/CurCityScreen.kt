@@ -48,7 +48,7 @@ fun CurCityScreen(mainVM: MainViewModel, changeCityOpen: () -> Unit) {
               feelsLike = it.current.feelslikeC,
               condition = it.current.condition.text,
               changeCity = { changeCityOpen() })
-        } ?: Text("Loading", color = onPrimaryContainerLight)
+        } ?: Text("Loading...", color = onPrimaryContainerLight)
 
         forecastDTO?.let {
           val days = it.forecast.forecastday
@@ -60,7 +60,7 @@ fun CurCityScreen(mainVM: MainViewModel, changeCityOpen: () -> Unit) {
                   icon = day.day.condition.icon)
             }
           }
-        } ?: Text("Loading", color = onTertiaryLight)
+        } ?: Text("Loading...", color = onPrimaryContainerLight)
       }
 }
 

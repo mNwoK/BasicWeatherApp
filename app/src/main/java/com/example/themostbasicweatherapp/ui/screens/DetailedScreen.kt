@@ -21,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.themostbasicweatherapp.data.network.model.CurrentDTO
+import com.example.themostbasicweatherapp.ui.theme.onPrimaryContainerLight
+import com.example.themostbasicweatherapp.ui.theme.onTertiaryLight
 import com.example.themostbasicweatherapp.viewmodels.MainViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
@@ -36,7 +38,7 @@ fun DetailedScreen(mainVM: MainViewModel, close: () -> Unit) {
       }
     }
   }
-  if (dto1 != null) {
+  dto1?.let {
     Log.d("ds", "dto not null")
     val dto: CurrentDTO = dto1!!
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -83,7 +85,7 @@ fun DetailedScreen(mainVM: MainViewModel, close: () -> Unit) {
       }
     }
     // BackHandler(onBack = close)
-  }
+  } ?: Text("No Internet", color = onPrimaryContainerLight)
 }
 
 // @Composable

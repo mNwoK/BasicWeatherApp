@@ -12,12 +12,16 @@ class CityRepoImpl(
         dao.insertCity(city)
     }
 
+    override suspend fun upsertWeather(weather: Weather) {
+        dao.upsertWeather(weather)
+    }
+
     override suspend fun deleteCity(city: Cities) {
         dao.deleteCity(city)
     }
 
-    override fun getAllCitites(): Flow<List<Cities>> {
-        return dao.getAllCitites()
+    override suspend fun getAllCities(): List<Cities>{
+        return dao.getAllCities()
     }
 
     override suspend fun getSelected(): Cities {

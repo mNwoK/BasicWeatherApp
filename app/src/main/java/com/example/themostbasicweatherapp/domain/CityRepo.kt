@@ -1,20 +1,18 @@
 package com.example.themostbasicweatherapp.domain
 
-import com.example.themostbasicweatherapp.data.db.CityDao
-import com.example.themostbasicweatherapp.data.db.entities.Cities
-import com.example.themostbasicweatherapp.data.db.entities.Weather
-import kotlinx.coroutines.flow.Flow
+import com.example.themostbasicweatherapp.data.db.entities.CityEntity
+import com.example.themostbasicweatherapp.data.db.entities.CurrentEntity
 
 interface CityRepo {
-  suspend fun insertCity(city: Cities)
+  suspend fun insertCity(city: CityEntity)
 
-  suspend fun upsertWeather(weather: Weather)
+  suspend fun upsertWeather(currentEntity: CurrentEntity)
 
-  suspend fun deleteCity(city: Cities)
+  suspend fun deleteCity(city: CityEntity)
 
-  suspend fun getAllCities(): List<Cities>
+  suspend fun getAllCities(): List<CityEntity>
 
-  suspend fun getSelected(): Cities
+  suspend fun getSelected(): CityEntity
 
-  suspend fun getWeatherByCity(cityName: String): Weather
+  suspend fun getWeatherByCity(cityName: String): CurrentEntity
 }

@@ -41,7 +41,7 @@ fun DetailedScreen(mainVM: MainViewModel, close: () -> Unit) {
   dto1?.let {
     Log.d("ds", "dto not null")
     val dto: CurrentDTO = dto1!!
-    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
       TempCard(
           dto.location.name,
           dto.current.tempC,

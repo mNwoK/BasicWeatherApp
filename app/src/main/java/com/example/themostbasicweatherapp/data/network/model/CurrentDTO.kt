@@ -1,5 +1,7 @@
 package com.example.themostbasicweatherapp.data.network.model
 
+import com.example.themostbasicweatherapp.data.db.entities.CurrentEntity
+import com.example.themostbasicweatherapp.domain.CurrentModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -30,3 +32,29 @@ data class Current(
     @SerialName("humidity") var humidity: Double?,
     @SerialName("feelslike_c") var feelslikeC: Double,
 )
+
+
+fun CurrentDTO.toDomainModel(): CurrentModel {
+    return CurrentModel(
+        cityName = location.name, // может работать через жопу
+        temp = current.tempC,
+        feelsLike = current.feelslikeC,
+        condition = current.condition.text,
+        iconURL = current.condition.icon,
+        windDir = current.windDir,
+        windSpeed = current.windKph,
+        pressure = current.pressureMb,
+        humidity = current.humidity
+    )
+}
+
+fun CurrentDTO.toEntity(): CurrentEntity {
+    return CurrentEntity(
+        id = 0,
+        cityName = location.name,
+        temp = current.tempC,
+        feelsLike = current.feelslikeC,
+        condition = current.condition.text,
+        iconURL = current.condition.icon
+    )
+}

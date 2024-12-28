@@ -5,8 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.themostbasicweatherapp.data.db.CityDao
-import com.example.themostbasicweatherapp.data.db.entities.Cities
-import com.example.themostbasicweatherapp.data.db.entities.Weather
+import com.example.themostbasicweatherapp.data.db.entities.CurrentEntity
 import com.example.themostbasicweatherapp.data.network.ApiClient
 import com.example.themostbasicweatherapp.data.network.model.Condition
 import com.example.themostbasicweatherapp.data.network.model.Current
@@ -111,7 +110,7 @@ class MainViewModel(private val api: ApiClient, val ctx: Context, val dao: CityD
         if (curDTO != null) {
           _state.update { it.copy(currentCity = curDTO) }
           dao.upsertWeather(
-              Weather(
+              CurrentEntity(
                   id = mainCity.id,
                   cityName = mainCity.name,
                   temp = curDTO.current.tempC,
@@ -152,7 +151,7 @@ class MainViewModel(private val api: ApiClient, val ctx: Context, val dao: CityD
           allCitiesCurrent += cur
             cur?.let {
                 dao.upsertWeather(
-                Weather(
+                CurrentEntity(
                     id = 0,
                     cityName = cur.location.name,
                     temp = cur.current.tempC,

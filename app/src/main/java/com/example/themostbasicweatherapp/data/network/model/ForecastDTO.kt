@@ -28,7 +28,7 @@ data class Day(
     @SerialName("avgtemp_c") val avgtempC: Double,
     @SerialName("maxwind_kph") val maxwindKph: Double,
     @SerialName("totalprecip_mm") val totalprecipMm: Double,
-    @SerialName("totalprecip_in") val totalprecipIn: Double,
     val avghumidity: Long,
     val condition: Condition,
 )
+
